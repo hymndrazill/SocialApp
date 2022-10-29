@@ -7,11 +7,14 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import Brightness5Icon from '@mui/icons-material/Brightness5';
 import {Link } from "react-router-dom"
 import "./navbar.scss"
 import { DarkModeContext } from '../../context/darkModeContext';
+import { AuthContext } from '../../context/authContext';
 const NavBar = () => {
-  const {toggle} = useContext(DarkModeContext)
+  const {toggle,darkMode} = useContext(DarkModeContext)
+  const {currentUser} = useContext(AuthContext)
 
   return (
     <div className='navbar'>
@@ -20,8 +23,8 @@ const NavBar = () => {
         <span>hymnDrazillSocial.</span>
         </Link>
         <HomeOutlinedIcon/>
-        <DarkModeOutlinedIcon onClick={toggle}/>
-        <GridViewOutlinedIcon/>
+{       !darkMode ? <DarkModeOutlinedIcon  onClick={toggle}/> : <Brightness5Icon onClick={toggle}/>}      
+         <GridViewOutlinedIcon/>
         <div className="search">
         <SearchOutlinedIcon/>
         <input type="text" placeholder='search' />
@@ -35,8 +38,8 @@ const NavBar = () => {
         <EmailOutlinedIcon/>
         <NotificationsNoneOutlinedIcon/>
         <div className="user">
-          <img src="https://images.pexels.com/photos/1255061/pexels-photo-1255061.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
-          <span>Firas</span>
+          <img src={currentUser.profilePicture} alt="" />
+          <span>{currentUser.name}</span>
         </div>
 
 
