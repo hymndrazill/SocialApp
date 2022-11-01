@@ -13,6 +13,7 @@ import LeftBar from "./components/leftBar/LeftBar";
 import RightBar from "./components/rightBar/RightBar";
 import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import "./style.scss"
 import { useContext } from "react";
@@ -22,7 +23,11 @@ function App() {
   const {currentUser} = useContext(AuthContext)
  const {darkMode} = useContext(DarkModeContext)
   const Layout = ()=>{
+    const queryClient = new QueryClient();
+
     return (
+
+      <QueryClientProvider client={queryClient}>
       <div className={`theme-${darkMode ? "dark" : "light"} `}>
         <NavBar/>
         <div style={{ display:'flex'}}>
@@ -32,8 +37,8 @@ function App() {
         </div>
         <RightBar/>
         </div>
-  
       </div>
+      </QueryClientProvider>
     )
   }
   const ProtectedRoute = ({children})=> {
