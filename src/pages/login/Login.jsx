@@ -19,6 +19,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await login(inputs);
+      navigate("/");
     } catch (e) {
       seterror(e.response.data);
     }
