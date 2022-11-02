@@ -23,7 +23,7 @@ function App() {
   const {currentUser} = useContext(AuthContext)
  const {darkMode} = useContext(DarkModeContext)
   const Layout = ()=>{
-    const queryClient = new QueryClient();
+    const  queryClient = new QueryClient();
 
     return (
 
