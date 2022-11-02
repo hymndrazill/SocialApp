@@ -12,14 +12,13 @@ const Posts = () => {
 );
   
    console.log(data)
-   { if (error) return 'An error has occurred: ' + error.message};
   return (
     <div className='posts'>
       {error
         ? 'Something is wrong' + error.message
         : isLoading
         ? 'Loading...'
-        : data.map((post) => <Post post={post} key={post.id} />)}
+        : data.map((post) => <Post  post={post} key={post.id} />)}
     </div>
   );
 }
