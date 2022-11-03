@@ -53,8 +53,7 @@ const Comments = ({postId}) => {
               onChange={(e)=>setDesc(e.target.value)} />
             <button onClick={handleClick}>Comment</button> 
         </div>
-
-     { data.map((comment) =>(
+     { data?.map((comment) =>(
         <div className="comment" key={comment.id}>
             <img src={comment.profilePic} alt="" />
             <div className="info">
