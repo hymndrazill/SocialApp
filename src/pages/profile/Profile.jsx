@@ -9,15 +9,18 @@ import LanguageIcon from '@mui/icons-material/Language';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Posts from '../../components/posts/Posts';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/authContext';
 import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 import { makeRequest } from '../../axios';
 import { useLocation } from 'react-router-dom';
+import Update from '../../components/update/Update';
 
 const Profile = () => {
   const userId = parseInt(useLocation().pathname.split('/')[2]);
   const { currentUser } = useContext(AuthContext);
+  const [openUpdate, setOpenUpdate] = useState(false);
+
   const { isLoading, error, data } = useQuery(['user'], () =>
     makeRequest.get('/users/find/' + userId).then((res) => {
       return res.data;
@@ -91,7 +94,7 @@ const Profile = () => {
                   </div>
                 </div>
                 {userId === currentUser.id ? (
-                  <button>Update</button>
+                  <button onClick={()=> setOpenUpdate(true)}>Update</button>
                 ) : (
                   <button onClick={handleFollow}>
                     {relationshipData.includes(currentUser.id)
@@ -109,7 +112,10 @@ const Profile = () => {
           <Posts userId= {userId}/>
         </>
       )}
+           {openUpdate && <Update setOpenUpdate={setOpenUpdate} user={data}/>}
+
     </div>
+
   );
 };
 
