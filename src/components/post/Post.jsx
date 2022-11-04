@@ -41,7 +41,7 @@ const Post = ({ post }) => {
   // mutation for delete action
   const deleteMutation = useMutation(
     (postId) => {
-        return makeRequest.delete('/posts/'+ post.id );
+        return makeRequest.delete('/posts/'+postId );
       
     },
     {
@@ -68,7 +68,7 @@ const Post = ({ post }) => {
         {isLoading ? "loading":<>
         <div className='user'>
           <div className='userInfo'>
-            <img src={post.profilePic} alt='' />
+            <img src={"/upload/"+currentUser.profilePic} alt='' />
             <div className='details'>
               <Link
                 to={`/profile/${post.userId}`}

@@ -109,7 +109,7 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <Posts userId= {userId}/>
+          <Posts user={data} userId= {userId}/>
         </>
       )}
            {openUpdate && <Update setOpenUpdate={setOpenUpdate} user={data}/>}
