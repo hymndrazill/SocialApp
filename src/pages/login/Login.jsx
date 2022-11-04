@@ -13,7 +13,6 @@ const Login = () => {
   const navigate = useNavigate();
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    console.log(inputs);
   };
   const handleLogin = async (e) => {
     e.preventDefault();
